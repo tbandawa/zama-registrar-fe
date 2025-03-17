@@ -1,0 +1,54 @@
+<div class="content-wrapper">
+
+    <div class="alert-container" *ngIf="(errorResponse | async)">
+        <div class="alert alert-danger alert-dismissible" *ngIf="(errorResponse | async)">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true"
+                (click)="dismissError()">&times;</button>
+            <p class="m-0" *ngFor="let message of (errorResponse | async).messages">{{ message }}</p>
+        </div>
+    </div>
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Members</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+                        <li class="breadcrumb-item active">Members</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card mb-5">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn-primary btn-sm shadow-2 mr-2" (click)="printMembers()">Print</button>
+                                    <a routerLink="/member/new" class="btn btn-primary btn-sm shadow-2" role="button" aria-disabled="true">Add</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body pb-0">
+                            <input class="form-control mb-3" id="myInput" type="text" placeholder="Search by name, district, id number..">
+                            <members-table></members-table>
+                            <members-pagination></members-pagination>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>

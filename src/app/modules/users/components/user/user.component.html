@@ -1,0 +1,124 @@
+<div class="content-wrapper">
+
+    <div class="alert-container" *ngIf="(errorResponse | async)">
+        <div class="alert alert-danger alert-dismissible" *ngIf="(errorResponse | async)">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true"
+                (click)="dismissError()">&times;</button>
+            <p class="m-0" *ngFor="let message of (errorResponse | async).messages">{{ message }}</p>
+        </div>
+    </div>
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>User</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+                        <li class="breadcrumb-item"><a routerLink="/users">Users</a></li>
+                        <li class="breadcrumb-item active">User</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card mb-5" *ngLet="user | async">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h5 class="mt-0">
+                                        <strong></strong>
+                                    </h5>
+                                </div>
+                                <div class="row">
+                                    <div class="custom-control custom-switch mr-3 mt-1">
+                                        <input type="checkbox" class="custom-control-input" id="toggleActive"
+                                            [(ngModel)]="isActive" (change)="onStatusChange(isActive? true : false)">
+                                        <label for="toggleActive" class="custom-control-label" id="checkStatus">User Status</label>
+                                    </div>
+                                    <button class="btn btn-primary btn-sm mr-3" (click)="updateUser()" [disabled]="!userForm.valid">Update User</button>
+                                    <a class="btn btn-danger btn-sm shadow-2" role="button" aria-disabled="true"
+                                        (click)="deletUser(userId)">Delete User</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <form [formGroup]="userForm" (ngSubmit)="updateUser()">
+                                <div class="mb-3">
+                                    <div class="form-group mb-0">
+                                        <label for="firstname">First name</label>
+                                        <input type="text" class="form-control" id="firstname"
+                                            formControlName="firstname">
+                                            <div class="col" *ngIf="userForm.controls.firstname?.touched">
+                                                <small class="text-danger" *ngIf="userForm.controls.firstname.errors?.['required']">First name is required</small>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="form-group mb-0">
+                                        <label for="lastname">Last name</label>
+                                        <input type="text" class="form-control" id="lastname"
+                                            formControlName="lastname">
+                                            <div class="col" *ngIf="userForm.controls.lastname?.touched">
+                                                <small class="text-danger" *ngIf="userForm.controls.lastname.errors?.['required']">Last name is required</small>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="form-group mb-0">
+                                        <label for="lastname">District</label>
+                                        <input type="text" class="form-control" id="district"
+                                            formControlName="district">
+                                            <div class="col" *ngIf="userForm.controls.district?.touched">
+                                                <small class="text-danger" *ngIf="userForm.controls.district.errors?.['required']">District is required</small>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="form-group mb-0">
+                                        <label for="roles">User Roles</label>
+                                        <select multiple id="roles" class="form-control" aria-label=".form-control" formControlName="roles">
+                                            <option value="admin" selected>Admin</option>
+                                            <option value="mod">Moderator</option>
+                                            <option value="user">User</option>
+                                        </select>
+                                    </div>
+                                    <div class="col" *ngIf="userForm.controls.lastname?.touched">
+                                        <small class="text-danger" *ngIf="userForm.controls.roles.errors?.['required']">User Roles are required</small>
+                                    </div>
+                                </div>
+                                <div class="mb-5">
+                                    <div class="form-group mb-0">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control" id="email" formControlName="email"
+                                            disabled>
+                                    </div>
+                                </div>
+                                <div class="callout callout-info">
+                                    <p>Enter user's old password if you do not intend to change it.</p>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="form-group mb-0">
+                                        <label for="password">Password</label>
+                                        <input type="text" class="form-control" id="password" formControlName="password">
+                                    </div>
+                                    <div class="col" *ngIf="userForm.controls.password?.touched">
+                                        <small class="text-danger" *ngIf="userForm.controls.password.errors?.['required']">Password is required</small>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>

@@ -1,0 +1,38 @@
+<p-table 
+  *ngIf="(pagedMembers | async)" 
+  [value]="(pagedMembers | async).results" 
+  [(selection)]="selectedMembers">
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="width: 4rem"><p-tableHeaderCheckbox /></th>
+      <th>#</th>
+      <th class="col-md-5 col-xs-5">Name</th>
+      <th class="col-md-4 col-xs-4">District</th>
+      <th class="col-md-3 col-xs-3">Status</th>
+      <th class="col-md-3 col-xs-3">Options</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-member>
+    <tr>
+      <td>
+        <p-tableCheckbox [value]="member" />
+      </td>
+      <td><span class="fw-bold mb-1">{{ member.membershipNumber }}</span></td>
+      <td><span class="fw-bold mb-1">{{ member.names }} {{ member.surname }}</span></td>
+      <td><span class="fw-bold mb-1">{{ member.district }}</span></td>
+      <td>
+        <span class="badge badge-pill badge-success mr-2" *ngIf="member.isActive; else inactive">Active</span>
+        <ng-template #inactive>
+          <span class="badge badge-pill badge-lightmr-2">Inactive</span>
+        </ng-template>
+        <span class="badge badge-pill badge-success" *ngIf="member.isCard; else nocard">Card</span>
+        <ng-template #nocard>
+          <span class="badge badge-pill badge-light">No Card</span>
+        </ng-template>
+      </td>
+      <td>
+        <a [routerLink]="['/members', member.id]">View</a>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

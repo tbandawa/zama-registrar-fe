@@ -1,0 +1,82 @@
+<div class="content-wrapper">
+
+    <div class="alert-container" *ngIf="(errorResponse | async)">
+        <div class="alert alert-danger alert-dismissible" *ngIf="(errorResponse | async)">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true"
+                (click)="dismissError()">&times;</button>
+            <p class="m-0" *ngFor="let message of (errorResponse | async).messages">{{ message }}</p>
+        </div>
+    </div>
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Member Details</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+                        <li class="breadcrumb-item active"><a routerLink="/members">Members</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="container-fluid" *ngIf="(member | async)">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card mb-5" *ngLet="member | async as person">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    
+                                </div>
+                                <div class="row">
+                                    <div class="custom-control custom-switch mr-3 mt-1">
+                                        <input type="checkbox" class="custom-control-input" id="toggleActivate"
+                                            [(ngModel)]="activate" (change)="onStatusChange(person.id, activate? true : false)">
+                                        <label for="toggleActivate" class="custom-control-label" id="checkActivate">Member Status</label>
+                                    </div>
+                                    <button type="button" class="btn btn-primary btn-sm shadow-2" (click)="printMember([person.id])">Print</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body p-0 m-0">
+                            <div class="row">
+                                <div class="col-md-4 border-right">
+                                    <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img width="350px" height="350px" src="{{person.photo.photo}}"><span class="text-black-50">Photo</span><span> </span></div>
+                                </div>
+                                <div class="col-md-8 border-right mb-4">
+                                    <div class="px-3">
+                                        <div class="row mt-2">
+                                            <div class="col-md-12"><label class="labels">Card Number</label><input type="text" class="form-control" value="{{person.membershipNumber}}"></div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-12"><label class="labels">National ID Number</label><input type="text" class="form-control" value="{{person.nationalIdNumber}}"></div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-6"><label class="labels">Names</label><input type="text" class="form-control" value="{{person.names}}"></div>
+                                            <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="{{person.surname}}"></div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-12"><label class="labels">District</label><input type="text" class="form-control" value="{{person.district}}"></div>
+                                            <div class="col-md-12 mt-3"><label class="labels">Position</label><input type="text" class="form-control" value="{{person.position}}"></div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-6"><label class="labels">Date Registered</label><input type="text" class="form-control" value="{{person.created}}"></div>
+                                            <div class="col-md-6"><label class="labels">Added By</label><input type="text" class="form-control" value="{{person.addedBy.firstname}} {{person.addedBy.lastname}}"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>

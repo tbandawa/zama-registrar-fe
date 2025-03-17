@@ -1,0 +1,9 @@
+<div class="m-0 p-0" *ngIf="(pagedMembers | async)">
+    <ngb-pagination
+        class="pagination justify-content-end mt-3" 
+        [collectionSize]="(pagedMembers | async).count" 
+        [(page)]="page" 
+        [pageSize]="(pagedMembers | async).perPage"
+        (pageChange)="getMembers()">
+    </ngb-pagination>
+</div>

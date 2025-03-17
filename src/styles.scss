@@ -1,0 +1,20 @@
+// NGX-TOASTR
+@import 'ngx-toastr/toastr';
+
+/* angular-cli file: src/styles.css */
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+
+// Primeng
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+
+// Alert
+.alert-container {
+    padding-left: 15px;
+    padding-top: 15px;
+    padding-right: 15px;
+}
+
+.alert {
+    min-height: 50px;
+}
