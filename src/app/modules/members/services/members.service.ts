@@ -2,9 +2,9 @@ import { Injectable, OnInit } from '@angular/core'
 import { BehaviorSubject } from 'rxjs'
 import { LoadingService } from 'src/app/utils/loading.service'
 import { ToastService } from 'src/app/modules/toasts/toast.service'
-import { Router } from '@angular/router'
 import { PagedMembersDto, MemberDto, ExportDto } from 'src/api/models'
 import { RegistrarControllerService } from 'src/api/services'
+import { AuthService } from 'src/app/utils/auth.service'
 
 @Injectable({ providedIn: 'root' })
 export class MembersService implements OnInit {
@@ -14,6 +14,7 @@ export class MembersService implements OnInit {
     private _memberDto$ = new BehaviorSubject<MemberDto | null>(null)
 
     constructor(
+        private authService: AuthService,
         private toastService: ToastService,
         private loadingService: LoadingService,
         private registrarControllerService: RegistrarControllerService
@@ -75,6 +76,10 @@ export class MembersService implements OnInit {
 
     dismissError() {
         this.loadingService.setError(null)
+    }
+
+    get isAdmin$() {
+        return this.authService.isAdmin()
     }
 
     get printedMembers$() {

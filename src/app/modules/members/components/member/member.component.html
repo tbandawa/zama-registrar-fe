@@ -40,7 +40,7 @@
                                             [(ngModel)]="activate" (change)="onStatusChange(person.id, activate? true : false)">
                                         <label for="toggleActivate" class="custom-control-label" id="checkActivate">Member Status</label>
                                     </div>
-                                    <button type="button" class="btn btn-primary btn-sm shadow-2" (click)="printMember([person.id])">Print</button>
+                                    <button *ngIf="isAdmin" type="button" class="btn btn-primary btn-sm shadow-2" (click)="printMember([person.id])">Print</button>
                                 </div>
                             </div>
                         </div>

@@ -35,7 +35,7 @@
                                     
                                 </div>
                                 <div>
-                                    <button type="button" class="btn btn-primary btn-sm shadow-2 mr-2" (click)="printMembers()">Print</button>
+                                    <button *ngIf="isAdmin" type="button" class="btn btn-primary btn-sm shadow-2 mr-2" (click)="printMembers()">Print</button>
                                     <a routerLink="/member/new" class="btn btn-primary btn-sm shadow-2" role="button" aria-disabled="true">Add</a>
                                 </div>
                             </div>

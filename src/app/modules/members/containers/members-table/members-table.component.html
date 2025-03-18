@@ -4,7 +4,7 @@
   [(selection)]="selectedMembers">
   <ng-template pTemplate="header">
     <tr>
-      <th style="width: 4rem"><p-tableHeaderCheckbox /></th>
+      <th *ngIf="isAdmin" style="width: 4rem"><p-tableHeaderCheckbox/></th>
       <th>#</th>
       <th class="col-md-5 col-xs-5">Name</th>
       <th class="col-md-4 col-xs-4">District</th>
@@ -14,7 +14,7 @@
   </ng-template>
   <ng-template pTemplate="body" let-member>
     <tr>
-      <td>
+      <td *ngIf="isAdmin">
         <p-tableCheckbox [value]="member" />
       </td>
       <td><span class="fw-bold mb-1">{{ member.membershipNumber }}</span></td>

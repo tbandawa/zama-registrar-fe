@@ -17,11 +17,11 @@ export class MembersTableComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  get pagedMembers() {
-    return this.membersService.pagedMembers$
+  get isAdmin() {
+    return this.membersService.isAdmin$
   }
 
-  showSelected() {
-    console.log(this.selectedMembers)
+  get pagedMembers() {
+    return this.membersService.pagedMembers$
   }
 }

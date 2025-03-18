@@ -79,6 +79,11 @@ export class AuthService implements OnInit {
         }
     }
 
+    isAdmin() {
+        const decodedToken = this.jwtHelper.decodeToken(this.getAuthToken() as string)
+        return ((decodedToken.roles) as string).includes('admin')
+    }
+
     clearStorage() {
         localStorage.removeItem("auth_token")
         sessionStorage.removeItem("auth_token")

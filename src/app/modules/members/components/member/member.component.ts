@@ -40,6 +40,10 @@ export class MemberComponent implements OnInit {
     this.membersService.dismissError()
   }
 
+  get isAdmin() {
+    return this.membersService.isAdmin$
+  }
+
   get member() {
     return this.membersService.member$
   }

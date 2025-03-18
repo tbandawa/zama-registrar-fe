@@ -3,6 +3,7 @@ import { MembersService } from '../../services/members.service'
 import { MembersTableComponent } from '../../containers/members-table/members-table.component'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { PrintModalComponent } from 'src/app/modules/modals/print-modal/print-modal.component'
+import { AuthService } from 'src/app/utils/auth.service'
 
 @Component({
   selector: 'app-members',
@@ -45,6 +46,10 @@ export class MembersComponent implements OnInit {
 
   dismissError() {
     this.membersService.dismissError()
+  }
+
+  get isAdmin() {
+    return this.membersService.isAdmin$
   }
 
   get errorResponse() {
