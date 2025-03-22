@@ -28,6 +28,10 @@ export class PrintModalComponent implements OnInit {
     document.body.appendChild(link);
     link.click()
     link.remove()
+    this.dismissModal()
+  }
+
+  dismissModal() {
     this.membersService.resetPrint()
     this.activeModal.dismiss('Close click')
     this.activeModal.close()
