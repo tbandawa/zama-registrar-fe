@@ -71,7 +71,7 @@ export class MembersService implements OnInit {
     }
 
     resetPrint() {
-        this._printedMembers$.next({})
+        this._printedMembers$.next(null)
     }
 
     dismissError() {

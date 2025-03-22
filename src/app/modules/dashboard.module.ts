@@ -27,12 +27,10 @@ import { LoginComponent } from './login/login.component'
 import { RegisterComponent } from './register/register.component'
 import { UsersComponent } from './users/components/users/users.component'
 import { UserComponent } from './users/components/user/user.component'
-import { HomeComponent } from './home/components/home/home.component';
 import { NewUserComponent } from './users/components/new-user/new-user.component'
 import { MembersComponent } from './members/components/members/members.component'
 import { MembersPaginationComponent } from './members/containers/members-pagination/members-pagination.component'
 import { MembersTableComponent } from './members/containers/members-table/members-table.component'
-
 import { ButtonModule } from 'primeng/button'
 import { TableModule } from 'primeng/table'
 import { PrintModalComponent } from './modals/print-modal/print-modal.component'
@@ -45,7 +43,6 @@ const routes: Routes = [
     path: '', component: DashboardComponent,
     canActivate: [authGuard],
     children: [
-      { path: 'home', component: HomeComponent },
       { path: 'members', component: MembersComponent },
       { path: 'members/:id', component: MemberComponent },
       { path: 'profile', component: ProfileComponent },
@@ -64,7 +61,6 @@ const routes: Routes = [
     UsersComponent,
     UserComponent,
     ProfileComponent,
-    HomeComponent,
     DeleteModalComponent,
     PrintModalComponent,
     SidebarComponent,
