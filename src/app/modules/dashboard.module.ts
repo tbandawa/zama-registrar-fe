@@ -38,7 +38,7 @@ import { MemberComponent } from './members/components/member/member.component'
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/members', pathMatch: 'full' },
   {
     path: '', component: DashboardComponent,
     canActivate: [authGuard],
