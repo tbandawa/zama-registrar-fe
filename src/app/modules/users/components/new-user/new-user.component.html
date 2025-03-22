@@ -57,8 +57,8 @@
                                 <div class="mb-5">
                                     <div class="form-group mb-0">
                                         <label for="roles">Select District</label>
-                                        <select multiple id="district" class="form-control" aria-label=".form-control" formControlName="district">
-                                            <option *ngFor="let district of (districts | async)" [value]="district">
+                                        <select id="district" class="form-control" aria-label=".form-control" formControlName="district">
+                                            <option *ngFor="let district of (districts | async)" [value]="district.name">
                                                 {{district.name}}
                                             </option>
                                         </select>
@@ -76,7 +76,7 @@
                                             <option value="user">User</option>
                                         </select>
                                     </div>
-                                    <div class="col" *ngIf="userForm.controls.lastname?.touched">
+                                    <div class="col" *ngIf="userForm.controls.roles?.touched">
                                         <small class="text-danger" *ngIf="userForm.controls.roles.errors?.['required']">User Roles are required</small>
                                     </div>
                                 </div>
